@@ -8,6 +8,7 @@ import {
     CardTitle
 } from "@/components/ui/card"
 import { CheckIcon } from 'lucide-react';
+import { Button } from '../ui/button';
 
 const PricingCard = ( {
     tier,
@@ -40,6 +41,16 @@ const PricingCard = ( {
               ))}
           </ul>
         </CardContent>
+        <CardFooter>
+          <Button
+              className='w-full'
+              variant={index === 1 ? "default" : "outline"}
+            >
+               {
+                 index === 0 ? "Get Started" : "Upgrade to Pro"
+               }
+          </Button>
+        </CardFooter>
     </Card>
   )
 }

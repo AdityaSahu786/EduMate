@@ -5,6 +5,7 @@ import Link from "next/link"
 import { buttonVariants } from '../ui/button'
 
 const Navbar = () => {
+  const user = false;
   return (
     <header>
         <MaxWidthWrapper>
@@ -23,6 +24,35 @@ const Navbar = () => {
                     >
                        Pricing
                     </Link>
+                    {!user ? (
+                        <>
+                        <Link href="/login"
+                          className={buttonVariants({
+                            variant: "secondary",
+                          })}
+                        >
+                          Login
+                        </Link>
+                        <Link href="/register" className={buttonVariants()}>
+                          Sign up
+                        </Link>
+                        </>
+                      ) : (
+                        <div className='flex items-center gap-2'>
+                          <Link href="/dashboard"
+                            className={
+                              buttonVariants({
+                                variant: "secondary"
+                              })
+                            }>
+                              Dashboard
+                            </Link>
+                            <Link className={buttonVariants()} href={"/create"}>
+                              Create
+                            </Link>
+                        </div>
+                      )
+                    }
                 </nav>
             </div>
         </MaxWidthWrapper>

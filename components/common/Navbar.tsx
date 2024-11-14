@@ -50,6 +50,13 @@ const Navbar = () => {
                             <Link className={buttonVariants()} href={"/create"}>
                               Create
                             </Link>
+                            <Link href={"/signout"}
+                               className={buttonVariants({
+                                variant: "ghost",
+                               })}
+                            >
+                              Sign out
+                            </Link>
                         </div>
                       )
                     }

@@ -17,7 +17,7 @@ const AnimatedTitle = ({ title, subtitle}: {
         className="text-center mb-8"
     >
         <h1 className="text-4xl font-extrabold text-gray-900 m:text-5xl md:text-6xl">
-            {title}
+            {title} {" "}
             <span className="text-indigo-600">
                 {subtitle}
             </span>

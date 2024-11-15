@@ -16,6 +16,9 @@ const Page = async () => {
     const userData = await prisma.user.findFirst({
         where: {
             id: user?.id
+        },
+        select: {
+            lessonPlans: true,
         }
     });
 
@@ -23,8 +26,10 @@ const Page = async () => {
         redirect("/")
     }
   return (
-    <MaxWidthWrapper>
-        <Dashboard/>
+    <MaxWidthWrapper className="py-8 md:py-20">
+        <Dashboard 
+          lessonPlans={userData.lessonPlans}
+        />
     </MaxWidthWrapper>
   )
 }

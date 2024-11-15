@@ -4,9 +4,11 @@ import { Sparkles } from 'lucide-react'
 import Link from "next/link"
 import { buttonVariants } from '../ui/button'
 import { LoginLink, LogoutLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs/components'
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
 
-const Navbar = () => {
-  const user = false;
+const Navbar = async () => {
+  const { getUser } = await getKindeServerSession()
+  const user = await getUser()
   return (
     <header>
         <MaxWidthWrapper>

@@ -1,4 +1,5 @@
 import AnimatedTitle from "@/components/AnimatedTitle"
+import LessonPlanForm from "@/components/LessonPlanForm"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { redirect } from "next/navigation"
 
@@ -13,7 +14,9 @@ const Page = async () => {
     >
         <div className="max-w-3xl mx-auto">
             <AnimatedTitle title="Create Your" subtitle="Lesson Plan" />
-            {/*<LessonPlanForm /> */}
+            <LessonPlanForm
+              isSubscribed={true}
+            /> 
         </div>
     </div>
   )

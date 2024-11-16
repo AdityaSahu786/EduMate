@@ -34,10 +34,10 @@ model LessonPlan {
 }
 
 model Section {
-    id String @id @default(cuid())
-    title String
-    content String
+    id           String     @id @default(cuid())
+    title        String
+    content      String
     lessonPlanId String
-    lessonPlan LessonPlan @relation(fields: [lessonPlanId], references: [id])
-    duration Int
+    lessonPlan   LessonPlan @relation(fields: [lessonPlanId], references: [id])
+    duration     Int
 }

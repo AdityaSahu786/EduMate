@@ -39,7 +39,7 @@ const LessonPlanForm = ({ isSubscribed }: {
      const [customSubtopic, setCustomSubtopic] = useState<string>("")
 
      const handleNext = () => {
-        if(isStepValid(Step)) {
+        if(isStepValid(step)) {
             setStep(step + 1)
         }
      }
@@ -76,9 +76,64 @@ const LessonPlanForm = ({ isSubscribed }: {
         setCustomSubtopic("")
         setCustomTopic("")
 
-     }
+     };
+
+     const clearSubtopic = () => {
+        setFormData({...formData, topic: "", subtopic: ""})
+        setCustomSubtopic("")
+     };
+
+     const isStepValid = (currentStep: number) => {
+        switch(currentStep) {
+            case 1:
+            return isSubscribed ? (customTopic !== "" || formData.topic !== "") : formData.topic !== "";
+            case 2:
+                return isSubscribed
+                ? (customTopic !== "" && customSubtopic !== "") ||
+                   (formData.topic !== "" && formData.subtopic !== "")
+                : formData.subtopic !== "";
+            case 3:
+                return formData.duration !== "";
+            case 4:
+                return formData.studentLevels !== "";
+            case 5:
+                return formData.objective !== "";
+            default:
+                return false;    
+        }
+     };
+
+     const isFormComplete = () => {
+        const { topic, subtopic, duration, studentLevels, objective} = formData;
+          if (isSubscribed) {
+            return (
+                ((customTopic !== "" && customSubtopic !== "") ||
+                (topic !== "" && subtopic !== "")) &&
+                duration !== "" &&
+                studentLevels !== "" &&
+                objective !== "" 
+             );
+            
+          } else {
+            return (
+                topic !== "" &&
+                subtopic !== "" &&
+                duration !== "" &&
+                studentLevels !== "" &&
+                objective !== ""
+            )
+          }
+     };
 
 
+     useEffect(() => {
+        if (formData.topic && subtopics[formData.topic as keyof typeof subtopics]) {
+            setFormData((prev) => ({
+                ...prev,
+                subtopic: ""
+            }))
+        }
+     }, [formData.topic])
 
     return <div>hello world</div>
 }
